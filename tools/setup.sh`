@@ -1,0 +1,24 @@
+bash
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
+
+echo "[+] Updating Termux packages..."
+pkg update && pkg upgrade -y
+
+echo "[+] Installing essential tools & Java 17..."
+pkg install python python-pip git wget curl apktool dex2jar openjdk-17 -y
+
+echo "[+] Creating workspace..."
+mkdir -p ~/whatsapp_research/reports
+cd ~/whatsapp_research
+
+echo "[+] Downloading WhatsApp APK..."
+# استخدام رابط مباشر أو بديل مضمون
+wget "https://d.apkpure.com/b/APK/com.whatsapp?version=latest" -O whatsapp.apk || \
+wget "https://f-droid.org/repo/com.whatsapp.apk" -O whatsapp.apk
+
+echo "[+] Verifying file..."
+ls -lh whatsapp.apk
+file whatsapp.apk
+
+echo "[+] Setup completed successfully!"
